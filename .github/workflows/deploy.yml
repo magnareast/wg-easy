@@ -13,6 +13,11 @@ jobs:
     permissions:
       packages: write
       contents: read
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: production
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
 
@@ -35,4 +40,4 @@ jobs:
       with:
         push: true
         platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
-        tags: wg-easy:latest
+        tags: ghcr.io/wg-easy/wg-easy:latest, ghcr.io/wg-easy/wg-easy:${{ env.RELEASE }}
